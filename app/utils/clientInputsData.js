@@ -1,6 +1,6 @@
 const inputs = [
   {
-    label: 'Name',
+    label: 'Nombre',
     type: 'text',
     indicator: 'name',
     field: 'name'
@@ -12,19 +12,19 @@ const inputs = [
     field: 'email'
   },
   {
-    label: 'Phone',
+    label: 'Celular',
     type: 'tel',
     indicator: 'phone',
     field: 'phone'
   },
   {
-    label: 'City',
+    label: 'Ciudad',
     type: 'text',
     indicator: 'city',
     field: 'city'
   },
   {
-    label: 'Company',
+    label: 'Empresa',
     type: 'text',
     indicator: 'company',
     field: 'company'

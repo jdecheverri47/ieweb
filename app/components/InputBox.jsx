@@ -8,7 +8,7 @@ function InputBox({ label, type, indicator, htmlFor  }) {
     <div className='flex flex-col my-2'>
       <label 
         htmlFor={htmlFor}
-        className='text-gray-500 text-sm'
+        className='text-black text-sm font-medium'
         >
           {label}
       </label>
@@ -21,7 +21,7 @@ function InputBox({ label, type, indicator, htmlFor  }) {
           <Input
             {...field}
             type={type}
-            className='w-[80vw]'
+            className='w-[80vw] py-2 text-lg'
             sx={{
               '--Input-focusedHighlight': 'rgba(253, 224, 70, 100)'
             }}

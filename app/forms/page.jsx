@@ -1,29 +1,44 @@
 'use client'
 import InputBox from "../components/InputBox";
 import { useForm, FormProvider } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import inputs from "../utils/clientInputsData"
-
+import { collection, addDoc } from "firebase/firestore";
+import {  db  } from "../utils/firebase";
 
 export default function FormPage() {
   const methods = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const router = useRouter();
+  const params = useSearchParams();
+  const searchUser = params.get('user');
+  
+  const onSubmit = async (data) => {
+    try {
+      const docRef = await addDoc(collection(db, "clients"), {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        city: data.city,
+        company: data.company,
+      });
+      router.push(`/contact?user=${searchUser}`);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
     methods.reset();
   };
 
   const searchParams = useSearchParams();
   const search = searchParams.get('user');
-  console.log(search);
-  
+
   return (
     <section className="h-screen w-screen">
-      <div className="px-10 pb-5 pt-10 bg-yellow-300">
-        <h1 className="font-bold text-3xl">
-          Contact info
-        </h1>
-        <p className="text-gray-500 text-sm">
-          Please fill in the form so we can get in contact.
+      <div className="px-10 pb-5 pt-10 bg-[#FFE100]">
+        <p className="text-xl font-extralight">
+          Haz parte de la familia ie
+        </p>
+        <p className="text-black text-2xl font-medium">
+          Ingresa tus datos
         </p>
       </div>
      <FormProvider {...methods}>
@@ -33,17 +48,15 @@ export default function FormPage() {
           ))}
 
           <div className="mx-10 mt-3">
-            <p className="text-justify">
-              By clicking the button, you agree to our <a href="#" className="text-yellow-300">Terms & Conditions</a>, and <a href="#" className="text-yellow-300">Privacy Policy</a>.
+            <p className="text-justify text-[#8B8B8B] text-sm">
+            Al registrarte estás aceptando nuestros <a href="#" className="text-[#FFE300]">términos y condiciones</a> y nuestra,<a href="#" className="text-[#FFE300]"> política de privacidad</a> de datos personales.
             </p>
           </div>
-          <button className="bg-yellow-300 text-black font-bold py-2 px-[24vw] my-5 rounded-lg" >
-            Send & Continue
+          <button className="bg-[#FFE100] text-black font-medium py-2 px-[24vw] my-5 rounded-lg" >
+            Enviar y continuar
           </button>
         </form>
       </FormProvider>
     </section>
   )
 }
-
-//cloudflared tunnel --url http://localhost:3000
