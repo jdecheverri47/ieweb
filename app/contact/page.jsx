@@ -29,14 +29,17 @@ function ContactPage() {
     getDocAsync();
   });
 
-  // function cleanVCardString(vCardString) {
-  //   return vCardString.replace(/;CHARSET=UTF-8/g, '');
-  // }
+  function cleanVCardString(vCardString) {
+    let vCardCleaner = vCardString.replace(/;CHARSET=UTF-8/g, '');
+    vCardCleaner = vCardCleaner.replace(/X-SOCIALPROFILE/g, 'URL');
+    console.log(vCardCleaner);
+    return vCardCleaner;
+  }
 
   const downloadTxtFile = vcfText => {
     console.log(vcfText)
     const element = document.createElement("a");
-    const file = new Blob([vcfText], { type: "text/vcard;CHARSET=UTF-8" });
+    const file = new Blob([vcfText], { type: "text/vcard;charset=utf-8" });
     element.href = URL.createObjectURL(file);
     element.download = "contact.vcf";
     document.body.appendChild(element);
@@ -47,8 +50,7 @@ function ContactPage() {
   const downloadContact = () => {
     const vcard = vCardFactory();
 
-    vcard.firstName = data?.firstname;
-    vcard.lastName = data?.lastname;
+    vcard.firstName = data?.name;
     vcard.email = data?.email;
     vcard.organization = "Internacional de electricos";
     vcard.photo.attachFromUrl(
@@ -61,11 +63,11 @@ function ContactPage() {
     vcard.socialUrls["instagram"] = "https://www.instagram.com/iegrupo/";
     vcard.socialUrls["website"] = "https://www.iegrupo.co/";
 
-    console.log(vcard.getFormattedString());
-    // let vCardString = vcard.getFormattedString();
-    // vCardString = cleanVCardString(vCardString);
-    // console.log(vCardString);
-    return vcard.getFormattedString();
+    // console.log(vcard.getFormattedString());
+    let vCardString = vcard.getFormattedString();
+    vCardString = cleanVCardString(vCardString);
+    console.log(vCardString);
+    return vCardString;
   };
 
   const searchParams = useSearchParams();
@@ -91,11 +93,11 @@ function ContactPage() {
         <div className='flex flex-col justify-center items-center mt-[5vh]'>
           <Image alt='profile picture' width={180} height={180} src='/images/blank-image.png' className='rounded-full shadow-sm border-2 border-[#FFE100]' priority/>
           <div className='flex flex-col pt-5 justify-center items-center max-w-[60vw]'>
-            <h1 className='font-semibold text-2xl mb-1'>
-              {data?.firstname + " " + data?.lastname}
+            <h1 className='font-semibold text-2xl w-[300px] text-center'>
+              {data?.name}
             </h1>
             <h2 className='text-xl font-thin text-[#7b7b7b] text-center'>
-              Director Ejecutivo y Comercial
+              {data?.department}
             </h2>
           </div>
         </div>

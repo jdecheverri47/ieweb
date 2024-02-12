@@ -1,4 +1,5 @@
 'use client'
+
 import InputBox from "../components/InputBox";
 import { useForm, FormProvider } from "react-hook-form";
 import { useSearchParams, useRouter } from "next/navigation";

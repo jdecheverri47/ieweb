@@ -3,16 +3,63 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --CircularProgress-progressColor: #FFE100 !important;
+  font-family: 'Poppins' !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.css-v8oslq-JoyCircularProgress-progress {
+  stroke: #FFE100 !important;
+}
+.css-v8oslq-JoyCircularProgress-progress {
+  stroke: #FFE100 !important;
+
 }
 
+.css-xo0hy0-JoyButton-root.Mui-disabled  {
+  background: #ffe10096 !important;
+  color: #0000007b !important;
+}
+
+.css-1c8xb5m-JoyTypography-root {
+  font-family: 'inherit' ;
+}
+
+.css-1aq4f1h-JoyButton-root {
+  position: unset !important;
+}
+
+.css-10hhsxs-JoyButton-root {
+  position: unset !important;
+}
+
+.css-1ckvkg0-JoyFormLabel-root {
+  font-family: inherit !important;
+}
+
+.css-1gw9vc6-JoyInput-input {
+  font-family: inherit !important;
+  position: unset !important;
+
+}
+
+.MuiCircularProgress-colorContext {
+  stroke: #FFE100 !important;
+}
+
+.css-1xfbbc8-JoyInput-root {
+  --Input-focusedHighlight: #FFE100 !important;
+}
+
+.css-hvz25i-JoyCheckbox-checkbox {
+  background-color: #FFE100 !important;
+}
+
+
+.css-hvz25i-JoyCheckbox-checkbox.Mui-checked {
+  --Icon-color: black !important;
+}
+
+.css-1aq4f1h-JoyButton-root {
+  font-family: inherit !important;
+  position: unset !important;
+}
