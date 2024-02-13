@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { auth } from "../../utils/firebase";
 import LoadingPage from "@/app/components/ui/LoadingPage";
 
-function Home({ children }) {
+export default function Home() {
   const session = useSession({
     required: true,
     onUnauthenticated() {
@@ -29,11 +29,8 @@ function Home({ children }) {
     <main className="flex flex-col items-center justify-center w-full h-screen">
       <h1 className="text-2xl font-medium text-gray-500">Admin page</h1>
       <button onClick={checkSession}>Cerrar sesión</button>
-      {children}
     </main>
   );
 }
 
 Home.requireAuth = true;
-
-export default Home;
