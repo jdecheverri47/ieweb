@@ -48,7 +48,7 @@ function EditModal({ openUpdate, setOpenUpdate, selectedRow }) {
 
     try {
       console.log(formData);
-      const response = await fetch(`http://localhost:3001/api/user/${uid}`, {
+      const response = await fetch(`https://ieapi-tutarjetadigital.onrender.com/api/user/${uid}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
