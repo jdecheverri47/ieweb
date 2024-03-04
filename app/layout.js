@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "TuTarjetaDigital || IE Grupo",
+  title: "TuTarjetaDigital | IE Grupo",
   description: "TuTarjetaDigital es una plataforma de tarjetas digitales para empresas y personas",
 };
 
