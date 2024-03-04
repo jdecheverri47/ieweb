@@ -54,7 +54,7 @@ function MyModal({ open, setOpen }) {
 
     try {
       setLoading(true);
-      const response = await fetch("https://ieapi-tutarjetadigital.onrender.com/api/signup", {
+      const response = await fetch("https://us-central1-ieid-8d946.cloudfunctions.net/api/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

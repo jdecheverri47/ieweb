@@ -14,6 +14,8 @@ import { db } from "../utils/firebase";
 
 function ContactPage() {
   const [data, setData] = useState(null);
+  const searchParams = useSearchParams();
+  const search = searchParams.get('user');
 
   useEffect(() => {
     const docRef = doc(db, "users", search);
@@ -23,11 +25,11 @@ function ContactPage() {
       if (docSnap.exists()) {
         setData(docSnap.data());
       }
-      // console.log("Document data:", docSnap.data());
+      console.log("Document data:", docSnap.data());
     };
 
     getDocAsync();
-  });
+  }, [search]);
 
   function cleanVCardString(vCardString) {
     let vCardCleaner = vCardString.replace(/;CHARSET=UTF-8/g, '');
@@ -69,9 +71,6 @@ function ContactPage() {
     console.log(vCardString);
     return vCardString;
   };
-
-  const searchParams = useSearchParams();
-  const search = searchParams.get('user');
 
   if (!data) return (
     <div className='w-screen h-screen flex justify-center items-center'>
