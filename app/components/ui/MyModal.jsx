@@ -31,6 +31,8 @@ function MyModal({ open, setOpen }) {
     department: "",
     rol: "",
     status: false,
+    imageUrl:
+      "https://firebasestorage.googleapis.com/v0/b/ieid-8d946.appspot.com/o/images%2F2024-03-14T10%3A05%3A01.2958932024-03-14%2010%3A05%3A01.173488..jpg?alt=media&token=fed3baca-1b24-4e7a-aad8-fd4da882f992",
   });
 
   const handleInputChange = (e) => {
@@ -54,16 +56,19 @@ function MyModal({ open, setOpen }) {
 
     try {
       setLoading(true);
-      const response = await fetch("https://us-central1-ieid-8d946.cloudfunctions.net/api/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      const response = await fetch(
+        "https://us-central1-ieid-8d946.cloudfunctions.net/api/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -81,11 +86,9 @@ function MyModal({ open, setOpen }) {
           rol: formData.rol,
           userId: userId,
         });
-      dispatch(setSuccess(true));
-        
+        dispatch(setSuccess(true));
       } else {
         console.error("Error al crear el usuario", response.statusText);
-
       }
     } catch (error) {
       const errorCode = error.code;
