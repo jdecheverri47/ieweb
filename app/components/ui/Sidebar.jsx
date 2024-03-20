@@ -18,7 +18,7 @@ function Sidebar() {
   const [loading, setLoading] = useState(true);
 
   const userData = useContext(UserContext);
-  
+
   useEffect(() => {
     if (userData) {
       setLoading(false);
@@ -57,15 +57,19 @@ function Sidebar() {
 
       <div className="border-t-[1px] w-full h-[80px] mt-auto flex justify-start items-center">
         <div className="pl-5">
-          <Image
-            src={userData?.imageUrl}
-            alt=""
-            width={120}
-            height={120}
-            className="w-[3rem] rounded-full border border-yellow-200"
-            priority
-            quality={100}
-          />
+          {loading ? (
+            <Skeleton variant="circular" width={40} height={40} />
+          ) : (
+            <Image
+              src={userData?.imageUrl}
+              alt=""
+              width={120}
+              height={120}
+              className="w-[3rem] rounded-full"
+              priority
+              quality={100}
+            />
+          )}
         </div>{" "}
         <div>
           {loading ? (
@@ -76,7 +80,10 @@ function Sidebar() {
               className="text-xl"
             />
           ) : (
-            <Typography className="text-black ml-2 text-lg" sx={{fontFamily: "inherit !important"}}>
+            <Typography
+              className="text-black ml-2 text-lg"
+              sx={{ fontFamily: "inherit !important" }}
+            >
               {userData?.name}
             </Typography>
           )}
