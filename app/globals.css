@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --CircularProgress-progressColor: #FFE100 !important;
+  /* --CircularProgress-progressColor: #FFE100 !important; */
   font-family: 'Poppins' !important;
 }
 
-.css-v8oslq-JoyCircularProgress-progress {
+/* .css-v8oslq-JoyCircularProgress-progress {
   stroke: #FFE100 !important;
 }
 .css-v8oslq-JoyCircularProgress-progress {
@@ -62,4 +62,4 @@
 .css-1aq4f1h-JoyButton-root {
   font-family: inherit !important;
   position: unset !important;
-}
+} */

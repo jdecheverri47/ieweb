@@ -39,7 +39,7 @@ function ButtonPanel({
         placeholder="Buscar usuario"
         value={search}
         onChange={handleInputChange}
-        sx={{ position: "unset !important"}}
+        sx={{ position: "unset !important", fontFamily: "inherit !important"}}
       />
      
       <div>
@@ -67,7 +67,7 @@ function ButtonPanel({
         sx={{
           color: "black",
           fontWeight: "medium",
-          fontFamily: "'__Poppins_6d1a03', '__Poppins_Fallback_6d1a03'",
+          fontFamily: "inherit !important",
           backgroundColor: "#FFE100 !important",
           transition: "all .3s ease-in-out",
           "&:hover": {

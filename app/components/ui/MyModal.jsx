@@ -18,6 +18,7 @@ import { db } from "../../utils/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { setSuccess } from "@/app/redux/notificationSlice";
+import { yellow } from "@mui/material/colors";
 
 function MyModal({ open, setOpen }) {
   const dispatch = useDispatch();
@@ -232,6 +233,7 @@ function MyModal({ open, setOpen }) {
                 <FormControl className="max-w-fit">
                   <Checkbox
                     label="Activo"
+                    color="warning"
                     className="mt-2"
                     name="status"
                     checked={formData.status}

@@ -163,6 +163,7 @@ function EditModal({ openUpdate, setOpenUpdate, selectedRow }) {
                 <FormControl className="max-w-fit">
                   <Checkbox
                     label="Activo"
+                    color="warning"
                     className="mt-2"
                     name="status"
                     checked={formData.status}
@@ -176,6 +177,7 @@ function EditModal({ openUpdate, setOpenUpdate, selectedRow }) {
                     type="submit"
                     className="w-[140px]"
                     sx={{
+                      fontFamily: "inherit !important",
                       color: "black",
                       backgroundColor: "#FFE100 !important",
                       transition: "all .3s ease-in-out",

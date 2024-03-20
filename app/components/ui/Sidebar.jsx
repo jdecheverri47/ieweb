@@ -58,10 +58,13 @@ function Sidebar() {
       <div className="border-t-[1px] w-full h-[80px] mt-auto flex justify-start items-center">
         <div className="pl-5">
           <Image
-            src={profileImage}
+            src={userData?.imageUrl}
             alt=""
+            width={120}
+            height={120}
             className="w-[3rem] rounded-full border border-yellow-200"
             priority
+            quality={100}
           />
         </div>{" "}
         <div>
@@ -73,7 +76,7 @@ function Sidebar() {
               className="text-xl"
             />
           ) : (
-            <Typography className="text-black ml-2 text-lg">
+            <Typography className="text-black ml-2 text-lg" sx={{fontFamily: "inherit !important"}}>
               {userData?.name}
             </Typography>
           )}

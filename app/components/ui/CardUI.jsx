@@ -11,13 +11,15 @@ import Button from "@mui/joy/Button";
 import { Person } from "@mui/icons-material";
 import { ThemeProvider } from "@mui/joy";
 import theme from "../../theme";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import ErrorBox from "./ErrorBox";
 import { db } from "../../utils/firebase";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { auth } from "../../utils/firebase";
 import { useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
+import {doc, getDoc} from "firebase/firestore";
 
 export default function CardUI() {
   const router = useRouter();
@@ -38,7 +40,7 @@ export default function CardUI() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(event);
+    event.preventDefault();
     setLoading(true);
     setErrorDialog(false);
     try {
@@ -47,18 +49,36 @@ export default function CardUI() {
         loginData.email,
         loginData.password
       );
-      await signIn("credentials", {
-        email: loginData.email,
-        password: loginData.password,
-        redirect: true,
-        callbackUrl: "/admin/users",
-      });
+      if (auth.currentUser !== null) {
+        const adminValidation = await isAdmin(auth.currentUser);
+  
+        if (adminValidation === true) {
+          await signIn("credentials", {
+            email: loginData.email,
+            password: loginData.password,
+            redirect: true,
+            callbackUrl: "/admin/users",
+          });
+        } else {
+          await signOut(auth); // Haciendo signOut del usuario no administrador
+          setErrorDialog(true);
+        }
+      } else {
+        setError("No se pudo iniciar sesión. Por favor, inténtelo de nuevo.");
+        setErrorDialog(true);
+      }
     } catch (error) {
       console.log(error);
       setError(error.message);
       setErrorDialog(true);
     }
     setLoading(false);
+  };
+
+  const isAdmin = async (user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    return docSnap.exists() ? docSnap.data().rol === "admin" : false;
   };
 
   useEffect(() => {
@@ -80,7 +100,7 @@ export default function CardUI() {
           fontFamily: "inherit",
         }}
       >
-        <Typography level="title-lg" startDecorator={<Person />}>
+        <Typography level="title-lg" startDecorator={<Person />} sx={{fontFamily: "inherit !important"}}>
           Iniciar sesión en tu cuenta
         </Typography>
         <Divider inset="none" />
@@ -91,23 +111,31 @@ export default function CardUI() {
         >
           <form className="w-full h-full" onSubmit={handleSubmit}>
             <FormControl sx={{ gridColumn: "1/-1" }}>
-              <FormLabel>Email</FormLabel>
+              <FormLabel sx={{fontFamily: "inherit !important"}}>Email</FormLabel>
               <Input
                 type="email"
                 required
                 name="email"
                 onChange={handleInputChange}
                 value={loginData.email}
+                sx={{
+                  '--Input-focusedHighlight': 'rgba(255,235,0, 1)',
+
+                }}
               />
             </FormControl>
             <FormControl sx={{ gridColumn: "1/-1", marginTop: "1rem" }}>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel sx={{fontFamily: "inherit !important"}}>Contraseña</FormLabel>
               <Input
                 type="password"
                 required
                 name="password"
                 onChange={handleInputChange}
                 value={loginData.password}
+                sx={{
+                  '--Input-focusedHighlight': 'rgba(255,235,0, 1)',
+                  
+                }}
               />
             </FormControl>
             {errorDialog && (
@@ -129,6 +157,10 @@ export default function CardUI() {
                   "&:hover": {
                     backgroundColor: "#FFE1009b !important",
                   },
+                  "&.Mui-disabled": {
+                    backgroundColor: "#FFE1009b !important",
+                    color: "#0000008a !important",
+                  }
                 }}
                 disabled={isButtonDisabled}
               >
