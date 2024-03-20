@@ -78,7 +78,7 @@ function TableSection() {
       />
       {showCircularProgress === true ? (
         <div className={`flex justify-center items-center w-full h-[300px] `}>
-          <CircularProgress variant="soft" />
+          <CircularProgress variant="soft" color="primary" />
         </div>
       ) : data.length > 0 ? (
         <>
