@@ -32,8 +32,6 @@ function MyModal({ open, setOpen }) {
     department: "",
     rol: "",
     status: false,
-    imageUrl:
-      "https://firebasestorage.googleapis.com/v0/b/ieid-8d946.appspot.com/o/images%2F2024-03-14T10%3A05%3A01.2958932024-03-14%2010%3A05%3A01.173488..jpg?alt=media&token=fed3baca-1b24-4e7a-aad8-fd4da882f992",
   });
 
   const handleInputChange = (e) => {
@@ -87,7 +85,7 @@ function MyModal({ open, setOpen }) {
           status: formData.status,
           rol: formData.rol,
           userId: userId,
-          imageUrl: formData.imageUrl,
+          imageUrl:  "https://firebasestorage.googleapis.com/v0/b/ieid-8d946.appspot.com/o/images%2F2024-03-14T10%3A05%3A01.2958932024-03-14%2010%3A05%3A01.173488..jpg?alt=media&token=fed3baca-1b24-4e7a-aad8-fd4da882f992",
         });
         dispatch(setSuccess(true));
       } else {
