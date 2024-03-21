@@ -86,6 +86,7 @@ function MyModal({ open, setOpen }) {
           status: formData.status,
           rol: formData.rol,
           userId: userId,
+          imageUrl: formData.imageUrl,
         });
         dispatch(setSuccess(true));
       } else {
