@@ -77,6 +77,7 @@ function MyModal({ open, setOpen }) {
         const userId = data.uid;
 
         const userDocRef = doc(db, "users", userId);
+        console.log(formData)
 
         await setDoc(userDocRef, {
           name: formData.name,
