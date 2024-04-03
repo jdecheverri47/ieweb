@@ -1,6 +1,7 @@
 "use client";
 
 import InputBox from "../components/ui/InputBox";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useSearchParams, useRouter } from "next/navigation";
 import inputs from "../utils/clientInputsData";
@@ -12,8 +13,10 @@ export default function FormPage() {
   const router = useRouter();
   const params = useSearchParams();
   const searchUser = params.get("user");
+  const [formFilled, setFormFilled] = useState(false);
 
   const onSubmit = async (data) => {
+    setFormFilled(false);
     try {
       const docRef = await addDoc(collection(db, "clients"), {
         name: data.name,
@@ -31,7 +34,15 @@ export default function FormPage() {
 
   const skip = () => {
     router.push(`/contact?user=${searchUser}`);
-  }
+  };
+
+  const watchAllFields = methods.watch();
+
+  useEffect(() => {
+    const requiredFields = ["name", "email", "phone", "city", "company"];
+    const isFormFilled = requiredFields.every(field => !!watchAllFields[field]);
+    setFormFilled(isFormFilled);
+  }, [watchAllFields]);
 
   const searchParams = useSearchParams();
   const search = searchParams.get("user");
@@ -48,14 +59,20 @@ export default function FormPage() {
           className="flex flex-col items-center pt-5 pb-10 bg-white"
         >
           {inputs.map((input, index) => (
-            <InputBox
-              key={index}
-              htmlFor={input.field}
-              label={input.label}
-              type={input.type}
-              indicator={input.indicator}
-              field={input.field}
-            />
+            <div key={index} >
+              <InputBox
+                key={index}
+                htmlFor={input.field}
+                label={input.label}
+                type={input.type}
+                indicator={input.indicator}
+                field={input.field}
+                rules={input.rules}
+              />
+              <p className="text-red-500 text-sm">
+                {methods.formState.errors[input.indicator]?.message}
+              </p>
+            </div>
           ))}
 
           <div className="mx-10 mt-3 max-w-[500px]">
@@ -65,18 +82,25 @@ export default function FormPage() {
                 términos y condiciones
               </a>{" "}
               y nuestra,
-              <a href="/consentimiento-datos-personales" className="text-[#FFE300]">
+              <a
+                href="/consentimiento-datos-personales"
+                className="text-[#FFE300]"
+              >
                 {" "}
                 política de privacidad
               </a>{" "}
               de datos personales.
             </p>
           </div>
-          <button className="bg-[#FFE100] text-black font-medium py-2 w-[24vw] my-5 rounded-lg lg:w-[500px] ">
+          <button className="bg-[#FFE100] text-black font-medium py-2 w-[350px] my-5 rounded-lg lg:w-[500px] disabled:bg-[#fff28d] disabled:text-gray-400 " disabled={!formFilled} >
             Enviar y continuar
           </button>
 
-          <a onClick={skip}><span className="underline text-gray-400 active:text-black hover:cursor-pointer">Omitir</span></a>
+          <a onClick={skip}>
+            <span className="underline text-gray-400 active:text-black hover:cursor-pointer">
+              Omitir
+            </span>
+          </a>
         </form>
       </FormProvider>
     </section>

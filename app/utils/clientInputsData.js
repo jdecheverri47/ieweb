@@ -3,7 +3,14 @@ const inputs = [
     label: 'Nombre',
     type: 'text',
     indicator: 'name',
-    field: 'name'
+    field: 'name',
+    rules: {
+      required: 'Este campo es requerido',
+      maxLength: {
+        value: 30,
+        message: 'El nombre no puede ser mayor a 30 caracteres'
+      }
+    }
   },
   {
     label: 'Email',

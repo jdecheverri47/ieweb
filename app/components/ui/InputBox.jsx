@@ -2,7 +2,7 @@
 import Input from '@mui/joy/Input';
 import { useFormContext, Controller } from 'react-hook-form';
 
-function InputBox({ label, type, indicator, htmlFor  }) {
+function InputBox({ label, type, indicator, htmlFor, rules  }) {
   const { control } = useFormContext();
   return (
     <div className='flex flex-col my-2'>
@@ -17,6 +17,7 @@ function InputBox({ label, type, indicator, htmlFor  }) {
         name={indicator}
         control={control}
         defaultValue=''
+        rules={rules}
         render={({ field }) => (
           <Input
             {...field}
