@@ -54,8 +54,8 @@ function ContactPage() {
     vcard.email = data?.email;
     vcard.organization = "Internacional de electricos";
     vcard.photo.attachFromUrl(data?.imageUrl);
-    vcard.cellPhone = data?.telefono;
-    vcard.workPhone = data?.phone;
+    vcard.cellPhone = data?.phone;
+    vcard.workPhone = data?.telefono;
     vcard.socialUrls["linkedin"] = "https://www.linkedin.com/company/ie-grupo/";
     vcard.socialUrls["twitter"] = "https://twitter.com/ie_grupo";
     vcard.socialUrls["facebook"] = "https://www.facebook.com/ie.grupo";
