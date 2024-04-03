@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "TuTarjetaDigital | IE Grupo",
-  description: "TuTarjetaDigital es una plataforma de tarjetas digitales para empresas y personas",
+  title: "MiTarjetaDigital | IE Grupo",
+  description: "MiTarjetaDigital es una plataforma de tarjetas digitales para empresas y personas",
 };
 
 export default function RootLayout({ children }) {

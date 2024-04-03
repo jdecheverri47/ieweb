@@ -54,6 +54,7 @@ function ContactPage() {
     vcard.email = data?.email;
     vcard.organization = "Internacional de electricos";
     vcard.photo.attachFromUrl(data?.imageUrl);
+    vcard.cellPhone = data?.telefono;
     vcard.workPhone = data?.phone;
     vcard.socialUrls["linkedin"] = "https://www.linkedin.com/company/ie-grupo/";
     vcard.socialUrls["twitter"] = "https://twitter.com/ie_grupo";
@@ -133,12 +134,12 @@ function ContactPage() {
 
           <div className="flex gap-4">
             <PhoneIcon className="w-6 h-6 text-[#FFE100]" />
-            <h3>(601) 744 81 30</h3>
+            <h3>{data?.telefono}</h3>
           </div>
 
           <div className="flex gap-4">
             <MapPinIcon className="w-6 h-6 text-[#FFE100]" />
-            <h3>Bogotá Calle 22B N° 30-32 Puerta 2</h3>
+            <h3>{data?.sede + " " + data?.direccion}</h3>
           </div>
         </div>
 
