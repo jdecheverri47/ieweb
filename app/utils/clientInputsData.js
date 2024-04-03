@@ -29,6 +29,12 @@ const inputs = [
     indicator: 'company',
     field: 'company'
   },
+  {
+    label: 'Cargo',
+    type: 'text',
+    indicator: 'position',
+    field: 'position'
+  }
 ]
 
 export default inputs;

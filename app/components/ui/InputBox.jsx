@@ -21,7 +21,7 @@ function InputBox({ label, type, indicator, htmlFor  }) {
           <Input
             {...field}
             type={type}
-            className='w-[80vw] py-2 text-lg'
+            className='w-[80vw] py-2 text-lg max-w-[500px]'
             sx={{
               '--Input-focusedHighlight': 'rgba(253, 224, 70, 100)'
             }}

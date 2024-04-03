@@ -29,12 +29,16 @@ export default function FormPage() {
     methods.reset();
   };
 
+  const skip = () => {
+    router.push(`/contact?user=${searchUser}`);
+  }
+
   const searchParams = useSearchParams();
   const search = searchParams.get("user");
 
   return (
     <section className="h-screen w-screen">
-      <div className="px-10 pb-5 pt-10 bg-[#FFE100]">
+      <div className="px-10 pb-5 pt-10 bg-[#FFE100] lg:px-[37vw]">
         <p className="text-xl font-extralight">Haz parte de la familia ie</p>
         <p className="text-black text-2xl font-medium">Ingresa tus datos</p>
       </div>
@@ -54,7 +58,7 @@ export default function FormPage() {
             />
           ))}
 
-          <div className="mx-10 mt-3">
+          <div className="mx-10 mt-3 max-w-[500px]">
             <p className="text-justify text-[#8B8B8B] text-sm">
               Al registrarte estás aceptando nuestros{" "}
               <a href="#" className="text-[#FFE300]">
@@ -68,9 +72,11 @@ export default function FormPage() {
               de datos personales.
             </p>
           </div>
-          <button className="bg-[#FFE100] text-black font-medium py-2 px-[24vw] my-5 rounded-lg">
+          <button className="bg-[#FFE100] text-black font-medium py-2 w-[24vw] my-5 rounded-lg lg:w-[500px] ">
             Enviar y continuar
           </button>
+
+          <a onClick={skip}><span className="underline text-gray-400 active:text-black hover:cursor-pointer">Omitir</span></a>
         </form>
       </FormProvider>
     </section>
