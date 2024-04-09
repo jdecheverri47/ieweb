@@ -24,6 +24,7 @@ export default function FormPage() {
         phone: data.phone,
         city: data.city,
         company: data.company,
+        cargo: data.position,
       });
       router.push(`/contact?user=${searchUser}`);
     } catch (e) {
