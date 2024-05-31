@@ -30,6 +30,7 @@ function MyModal({ open, setOpen }) {
     password: "",
     phone: "",
     department: "",
+    sede: "",
     direccion: "",
     rol: "",
     status: false,
@@ -83,6 +84,7 @@ function MyModal({ open, setOpen }) {
           email: formData.email,
           phone: formData.phone,
           department: formData.department,
+          sede: formData.sede,
           direccion: formData.direccion,
           status: formData.status,
           rol: formData.rol,
@@ -108,6 +110,7 @@ function MyModal({ open, setOpen }) {
       password: "",
       phone: "",
       department: "",
+      sede: "",
       direccion: "",
       status: false,
     });
@@ -121,6 +124,7 @@ function MyModal({ open, setOpen }) {
         password: "",
         phone: "",
         department: "",
+        sede: "",
         direccion: "",
         rol: "",
         status: false,
@@ -223,10 +227,20 @@ function MyModal({ open, setOpen }) {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Departamento</FormLabel>
+                  <FormLabel>Sede</FormLabel>
                   <Input
                     required
-                    name="Dirección"
+                    name="sede"
+                    className="max-w-[400px]"
+                    value={formData.sede ?? ""}
+                    onChange={handleInputChange}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Dirección</FormLabel>
+                  <Input
+                    required
+                    name="direccion"
                     className="max-w-[400px]"
                     value={formData.direccion ?? ""}
                     onChange={handleInputChange}
