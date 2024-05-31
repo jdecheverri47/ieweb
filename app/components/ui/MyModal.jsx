@@ -177,7 +177,7 @@ function MyModal({ open, setOpen }) {
             </DialogContent>
             <form onSubmit={handleSubmit}>
               <Stack spacing={2}>
-                <div className="flex gap-4">
+                <div className="flex gap-8">
                   <div className="w-full flex flex-col gap-2">
                     <FormControl>
                       <FormLabel>Email</FormLabel>
