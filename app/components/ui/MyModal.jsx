@@ -30,6 +30,7 @@ function MyModal({ open, setOpen }) {
     password: "",
     phone: "",
     department: "",
+    direccion: "",
     rol: "",
     status: false,
   });
@@ -82,6 +83,7 @@ function MyModal({ open, setOpen }) {
           email: formData.email,
           phone: formData.phone,
           department: formData.department,
+          direccion: formData.direccion,
           status: formData.status,
           rol: formData.rol,
           userId: userId,
@@ -106,6 +108,7 @@ function MyModal({ open, setOpen }) {
       password: "",
       phone: "",
       department: "",
+      direccion: "",
       status: false,
     });
   };
@@ -118,6 +121,7 @@ function MyModal({ open, setOpen }) {
         password: "",
         phone: "",
         department: "",
+        direccion: "",
         rol: "",
         status: false,
       });
@@ -215,6 +219,16 @@ function MyModal({ open, setOpen }) {
                     name="department"
                     className="max-w-[400px]"
                     value={formData.department ?? ""}
+                    onChange={handleInputChange}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Departamento</FormLabel>
+                  <Input
+                    required
+                    name="Dirección"
+                    className="max-w-[400px]"
+                    value={formData.direccion ?? ""}
                     onChange={handleInputChange}
                   />
                 </FormControl>
