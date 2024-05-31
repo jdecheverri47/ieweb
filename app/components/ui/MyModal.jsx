@@ -31,6 +31,7 @@ function MyModal({ open, setOpen }) {
     phone: "",
     department: "",
     sede: "",
+    telefono: "",
     direccion: "",
     rol: "",
     status: false,
@@ -77,7 +78,7 @@ function MyModal({ open, setOpen }) {
         const userId = data.uid;
 
         const userDocRef = doc(db, "users", userId);
-        console.log(formData)
+        console.log(formData);
 
         await setDoc(userDocRef, {
           name: formData.name,
@@ -85,11 +86,13 @@ function MyModal({ open, setOpen }) {
           phone: formData.phone,
           department: formData.department,
           sede: formData.sede,
+          telefono: formData.telefono,
           direccion: formData.direccion,
           status: formData.status,
           rol: formData.rol,
           userId: userId,
-          imageUrl:  "https://firebasestorage.googleapis.com/v0/b/ieid-8d946.appspot.com/o/images%2F2024-03-14T10%3A05%3A01.2958932024-03-14%2010%3A05%3A01.173488..jpg?alt=media&token=fed3baca-1b24-4e7a-aad8-fd4da882f992",
+          imageUrl:
+            "https://firebasestorage.googleapis.com/v0/b/ieid-8d946.appspot.com/o/images%2F2024-03-14T10%3A05%3A01.2958932024-03-14%2010%3A05%3A01.173488..jpg?alt=media&token=fed3baca-1b24-4e7a-aad8-fd4da882f992",
         });
         dispatch(setSuccess(true));
       } else {
@@ -109,6 +112,7 @@ function MyModal({ open, setOpen }) {
       email: "",
       password: "",
       phone: "",
+      telefono: "",
       department: "",
       sede: "",
       direccion: "",
@@ -122,6 +126,7 @@ function MyModal({ open, setOpen }) {
         name: "",
         email: "",
         password: "",
+        telefono: "",
         phone: "",
         department: "",
         sede: "",
@@ -157,7 +162,6 @@ function MyModal({ open, setOpen }) {
           }}
         >
           <ModalDialog
-            className="w-[400px]"
             sx={{
               opacity: 0,
               transition: `opacity 300ms`,
@@ -173,92 +177,110 @@ function MyModal({ open, setOpen }) {
             </DialogContent>
             <form onSubmit={handleSubmit}>
               <Stack spacing={2}>
-                <FormControl>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    name="email"
-                    value={formData.email ?? ""}
-                    onChange={handleInputChange}
-                    required
-                    className="max-w-[400px]"
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Contraseña</FormLabel>
-                  <Input
-                    required
-                    type="password"
-                    name="password"
-                    className="max-w-[400px]"
-                    value={formData.password ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Nombre</FormLabel>
-                  <Input
-                    autoFocus
-                    required
-                    name="name"
-                    className="max-w-[400px]"
-                    value={formData.name ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
+                <div className="flex gap-4">
+                  <div className="w-full flex flex-col gap-2">
+                    <FormControl>
+                      <FormLabel>Email</FormLabel>
+                      <Input
+                        name="email"
+                        value={formData.email ?? ""}
+                        onChange={handleInputChange}
+                        required
+                        className="w-[300px]"
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Contraseña</FormLabel>
+                      <Input
+                        required
+                        type="password"
+                        name="password"
+                        className="w-[300px]"
+                        value={formData.password ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Nombre</FormLabel>
+                      <Input
+                        autoFocus
+                        required
+                        name="name"
+                        className="w-[300px]"
+                        value={formData.name ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
 
-                <FormControl>
-                  <FormLabel>Celular</FormLabel>
-                  <Input
-                    required
-                    name="phone"
-                    className="max-w-[400px]"
-                    value={formData.phone ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Departamento</FormLabel>
-                  <Input
-                    required
-                    name="department"
-                    className="max-w-[400px]"
-                    value={formData.department ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Sede</FormLabel>
-                  <Input
-                    required
-                    name="sede"
-                    className="max-w-[400px]"
-                    value={formData.sede ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Dirección</FormLabel>
-                  <Input
-                    required
-                    name="direccion"
-                    className="max-w-[400px]"
-                    value={formData.direccion ?? ""}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-                <FormControl className="max-w-full">
-                  <FormLabel>Rol</FormLabel>
-                  <Select
-                    name="rol"
-                    onChange={handleSelectChange}
-                    placeholder="Selecciona un rol"
-                    value={formData.rol ?? ""}
-                  >
-                    <Option value="user">User</Option>
-                    <Option value="admin">Admin</Option>
-                  </Select>
-                </FormControl>
-                <FormControl className="max-w-fit">
+                    <FormControl>
+                      <FormLabel>Celular</FormLabel>
+                      <Input
+                        required
+                        name="phone"
+                        className="w-[300px]"
+                        value={formData.phone ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                    <FormControl className="w-full">
+                      <FormLabel>Rol</FormLabel>
+                      <Select
+                        name="rol"
+                        onChange={handleSelectChange}
+                        placeholder="Selecciona un rol"
+                        value={formData.rol ?? ""}
+                      >
+                        <Option value="user">User</Option>
+                        <Option value="admin">Admin</Option>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <FormControl>
+                      <FormLabel>Departamento</FormLabel>
+                      <Input
+                        required
+                        name="department"
+                        className="w-[300px]"
+                        value={formData.department ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Sede</FormLabel>
+                      <Input
+                        required
+                        name="sede"
+                        className="w-[300px]"
+                        value={formData.sede ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Teléfono</FormLabel>
+                      <Input
+                        required
+                        name="telefono"
+                        className="w-[300px]"
+                        value={formData.telefono ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Dirección</FormLabel>
+                      <Input
+                        required
+                        name="direccion"
+                        className="w-[300px]"
+                        value={formData.direccion ?? ""}
+                        onChange={handleInputChange}
+                      />
+                    </FormControl>
+                   
+                  </div>
+                </div>
+
+                <FormControl className="w-fit">
                   <Checkbox
                     label="Activo"
                     color="warning"
